@@ -2,5 +2,136 @@
 @import '../../style/scss.scss';
 
 .hb-main {
-    background: $base-color;
+    .hb-top-box {
+        margin-top: 60px;
+        background: $white;
+        @include rel;
+        @include bs;
+    }
+    .hb-head-box {
+        @include abs;
+        top: -40px;
+        left: 10px;
+        @include bs;
+        background: $white;
+        width: 150px;
+        height: 40px;
+        img {
+            margin-top: 5px;
+            margin-left: 5px;
+        }
+        .hb-fans-info {
+            height: 50px;
+            display: flex;
+
+            .box{
+                width: 74px;
+                height: 50px;
+                text-align: center;
+                color: $gray;
+            }
+            .data {
+                @include f(16);
+                margin-top: 10px;
+                font-weight: 700;
+                line-height: 18px;
+                color: $black;
+            }
+        }
+
+        
+    }
+    .hb-info-box {
+        height: 170px;
+        margin-left: 180px;
+
+        .name {
+            @include f(24);
+            font-weight: 700;
+            margin-top: 15px;
+            color: $black;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .introduction {
+            color: $gray;
+            span {
+                margin-right: 10px;
+            }
+        }
+        .about {
+            @include f(14);
+            margin-top: 5px;
+        }
+    }
+    .hb-info-tabs {
+        height: 50px;
+        line-height: 50px;
+
+        span {
+            @include f(14);
+            @include cur;
+            padding: 0 20px;
+        }
+        span.actice {
+            font-weight: 700;
+            color: $black;
+            
+        }
+    }
+
+    .bb-list-box {
+        margin-top: 20px;
+        margin-left: -20px;
+        padding-bottom: 30px;
+        // column-count: 4;
+        // column-gap: 20px;
+        .hb-list-board {
+            // break-inside: avoid;
+
+            padding: 10px;
+            background: $white;
+            @include border-radius(3px);
+            @include bs-hover;
+           
+           
+            @include fl;
+            width: 285px;
+            margin: 0 0 20px 20px;
+
+            .cover {
+                @include rel;
+                @include bs;
+                min-height: 150px;
+                img {
+                    width: 100%;
+                }
+                .over {
+                    @include abs;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    height: 150px;
+                    background: red;
+                    @include gblg;
+    
+                }
+                .title , .follow {
+                    @include abs;
+                    @include ts;
+                    top: 30px;
+                    left: 12px;
+                }
+                .title {
+                    top: 10px;
+                    @include f(14);
+                }
+               
+            }
+        }
+        .hb-list-board:nth-child(3) {
+            font-weight: normal;
+        }
+    }
 }
+

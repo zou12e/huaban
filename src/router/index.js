@@ -4,6 +4,7 @@ import {hot} from 'react-hot-loader';
 import Home from '../containers/home/home';
 import List from '../containers/list/list';
 
+
 const Router = ({component: Component, children, ...rest}) => (
   <Route
     {...rest}

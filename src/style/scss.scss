@@ -1,11 +1,38 @@
 @charset "utf-8";//解决中文注释问题;
 
+// 宽度
+$main-width: 1200;
+
+// color
+$base-color: #F90;
+$font-base-color: #666;
+
+$border-color: #ededed;
+$body-bg-color: #f5f5f5;
+$a-hover-color: #005EA7;
+
+$gray:#999;
+$white: #fff;
+$black: #333;
+$orange:#f60;
+$yellow:#fff000;
+$blue:#5fb3d2;
+$red:#ff546a;
+$disabled:#ccc;
+
+// 引入字体
+@import './font/iconfont.scss';
+
+
 //引入底层库;
 @import './base.scss';
-// $content:950,$unit:px,$orange:#f60,$yellow:#fff000,$blue:#5fb3d2,$red:#ff546a,$gray:#ccc,$disabled:#ccc,$bor_color:#ccc
-//默认初始化;
-@include base($content:1000);
 
+//默认初始化;
+@include base($content:$main-width);
+
+body {
+    background: $body-bg-color;
+}
 /*方法*/
 .f12{
     @include f(12);

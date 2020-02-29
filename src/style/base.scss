@@ -1,30 +1,27 @@
 @charset "utf-8";
 
-// color
-$base-color: #F90;
-$bor_color: #ccc;
 
 
 //清楚标签默认样式;
 @mixin label(){
     /* 清楚标签默认样式  */
     html {margin: 0; padding: 0; border: 0;}
-    body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption, tbody, tfoot, thead, article, aside, dialog, figure, footer, header, hgroup, nav, section { margin: 0; padding: 0; border: 0; font-size: 100%; vertical-align: baseline; }
+    body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption, tbody, tfoot, thead, article, aside, dialog, figure, footer, header, hgroup, nav, section { margin: 0; padding: 0; border: 0; font-size: 100%; vertical-align: baseline;box-sizing: border-box; }
     ol, ul, li { list-style: none; }
-    body {line-height: 1.5; background: white; font-family: 'Microsoft Yahei', Arial, Helvetica, sans-serif; font-size: 12px; color: #333;}
+    body {line-height: 1.5; background: white; font-family: 'Microsoft Yahei', Arial, Helvetica, sans-serif; font-size: 12px; color: $font-base-color;}
     table,tr, th, td { border-collapse: collapse; margin: 0; padding: 0;  font-size: 100%; vertical-align: baseline;}
     caption, th, td { text-align: left; font-weight: normal; float: none !important; }
     table, th, td, select, img, input,object{ vertical-align: middle;}
     :focus { outline: 0;}
     input,select{margin:0;}
-    a { color: #005EA7; text-decoration: none; }
+    a { color: $a-hover-color; text-decoration: none; }
     a:hover { text-decoration:underline; }
     p,a,td{word-wrap:break-word;word-break:break-all;}
     img { border: none;vertical-align:top; }
-    textarea{ resize:none;border:1px solid #ccc;}
-    textarea:hover{border-color:#ccc;}
+    textarea{ resize:none;border:1px solid $border-color;}
+    textarea:hover{border-color:$border-color;}
     input[type="text"],input[type="button"]{-webkit-appearance: none;border-radius: 0;font-family:'Microsoft Yahei','黑体', Arial, Helvetica, sans-serif;}
-    input[type="text"]{border:solid 1px #ccc; border-radius:0;}
+    input[type="text"]{border:solid 1px $border-color; border-radius:0;}
     dfn {font-style: normal;font-family: Arial;}
 }
 
@@ -50,10 +47,35 @@ $bor_color: #ccc;
         overflow: hidden;
     }
 }
-//清除滚动条出现的闪动;
-@mixin outer{
-   // margin-left: calc(100vw - 100%)!important;
+
+// 边框阴影
+@mixin bs {
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.02), 0 4px 8px 0 rgba(0,0,0,.02)
 }
+@mixin bs-hover {
+    @include bs;
+    @include cur;
+    opacity: 0.9;
+    transition: opacity .24s ease-in-out,transform .24s ease-in-out,box-shadow .36s ease-in-out;
+    &:hover {
+        opacity: 1;
+        box-shadow: 0 1px 3px rgba(0,0,0,.02),0 8px 16px -4px rgba(0,0,0,.17);
+        transform: translateY(-1px);
+    }
+}
+
+// 文字特效
+@mixin ts {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0,0,0,.5);
+}
+
+// 蒙版渐变
+@mixin gblg {
+    background: linear-gradient(top, rgba(0, 0, 0, 0.5), rgba(255, 255, 255, 0));
+
+}
+
 ///////////////////////////////////////////////
 // 循环初始字体大小:                         //  
 //  @end   : 结束字体大小(数字),必须输;      //
@@ -62,7 +84,6 @@ $bor_color: #ccc;
 //  例子   : @include base-fonts(32);        //
 ///////////////////////////////////////////////
 @mixin base-fonts( $end:100,$begin:12,$un:px ){
-
     @if( TestNum( $begin,$end ) ){
         @for $i from $begin through $end {
             @if( $i%2 == 0 ){
@@ -70,35 +91,11 @@ $bor_color: #ccc;
             }
         }
     }
-
 }
 
-/////////////////////////////////////////////////////////////
-// 循环初始默认样式:                                       //
-//  @name  : 样式前缀名,必须输;                            //
-//  @style : 设置样式,必须输;                              //
-//  @end   : 结束样式,必须输;                              //
-//  @begin : 开始样式,可以省略;                            //
-//  @mult  : 循环累加倍数,可以省略;                        //
-//  @un    : 字体单位(字符串),可以省略;                    // 
-//  例子   : @include base-styles(mb,margin-bottom,30,5);  //
-/////////////////////////////////////////////////////////////
-@mixin base-styles( $name,$style,$end:100,$begin:5,$mult:5,$un:px ){
-    
-    @if( TestNum( $begin,$end ) ){
-        @for $i from $begin through $end {
-            @if( $i%$mult == 0 ){
-                .#{$name}-#{$i}{ #{$style}:$i+$un; }
-            }
-            
-        }
-    }
-
-}
 
 //判断是否为数字;
 @function TestNum( $num1,$num2 ){
-    
     @if ( not unitless($num1) or not unitless($num2) ){
         @debug "其中数值有单位";
         @return false;
@@ -172,7 +169,7 @@ $bor_color: #ccc;
 }
 
 //改变默认选中颜色
-@mixin selection( $bg:#00F,$color:#fff,$obj:0 ){
+@mixin selection( $bg: $a-hover-color,$color:$white,$obj:0 ){
     
     @if( type-of($obj) == number ){
 
@@ -301,7 +298,7 @@ $browser: null;
 
 
 //打包默认样式;
-@mixin base($content:950,$unit:px,$orange:#f60,$yellow:#fff000,$blue:#5fb3d2,$red:#ff546a,$gray:#ccc,$disabled:#ccc,$bor_color:#ccc){
+@mixin base($content:950,$unit:px){
      @include label();
     /* 默认浮动 */
     .fl{
@@ -377,27 +374,26 @@ $browser: null;
     @include base-fonts(32,$un:$unit);
     /* margin  padding */
     .mt0 { margin-top: 0 !important; }
-    @include base-styles(mt,margin-top,30,5,$un:$unit);
+
     .mb0 { margin-bottom: 0 !important; }
-    @include base-styles(mb,margin-bottom,30,5,$un:$unit);
+ 
     .ml0 { margin-left: 0 !important; }
-    @include base-styles(ml,margin-left,30,5,$un:$unit);
+
     .mr0 { margin-right: 0 !important; }
-    @include base-styles(mr,margin-right,30,5,$un:$unit);
-    /* 高度 */
-    @include base-styles(blk,height,50,5,$un:$unit);
+
+  
     /* 边框 */
-    .bor_t{ border-top:solid 1px $bor_color;}
-    .bor_l{ border-left:solid 1px $bor_color;}
-    .bor_r{ border-right:solid 1px $bor_color;}
-    .bor_b{ border-bottom:solid 1px $bor_color;}
-    .bor_t0{ border-top:none!important;}
-    .bor_l0{ border-left:none!important;}
-    .bor_r0{ border-right:none!important;}
-    .bor_b0{ border-bottom:none!important;}
-    .bor_das{ border:1px dashed $bor_color;}
-    .bor_dot{ border:1px dotted $bor_color;}
-    .border{ border:1px solid $bor_color;}
+    .bor-t{ border-top:solid 1px $border-color;}
+    .bor-l{ border-left:solid 1px $border-color;}
+    .bor-r{ border-right:solid 1px $border-color;}
+    .bor-b{ border-bottom:solid 1px $border-color;}
+    .bor-t0{ border-top:none!important;}
+    .bor-l0{ border-left:none!important;}
+    .bor-r0{ border-right:none!important;}
+    .bor-b0{ border-bottom:none!important;}
+    .bor-das{ border:1px dashed $border-color;}
+    .bor-dot{ border:1px dotted $border-color;}
+    .border{ border:1px solid $border-color;}
     /* box */
     .content{ width: $content+$unit; margin:0 auto; }
 }
