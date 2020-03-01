@@ -76,6 +76,18 @@
 
 }
 
+// 按钮
+@mixin button {
+    border:1px solid $border-color;
+    @include border-radius(2px);
+    padding: 4px 15px;
+
+    &:hover {
+        border-color: $border-hover-color;
+        background-color: $border-color;
+    }
+}
+
 ///////////////////////////////////////////////
 // 循环初始字体大小:                         //  
 //  @end   : 结束字体大小(数字),必须输;      //

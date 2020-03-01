@@ -16,7 +16,9 @@
         background: $white;
         width: 150px;
         height: 40px;
-        img {
+        .logo {
+            width: 140px;
+            height: 140px;
             margin-top: 5px;
             margin-left: 5px;
         }
@@ -81,28 +83,32 @@
     }
 
     .bb-list-box {
-        margin-top: 20px;
-        margin-left: -20px;
+        
+        margin:20px 0 0 -20px;
         padding-bottom: 30px;
         // column-count: 4;
         // column-gap: 20px;
         .hb-list-board {
-            // break-inside: avoid;
+            break-inside: avoid;
 
             padding: 10px;
             background: $white;
             @include border-radius(3px);
             @include bs-hover;
-           
+            @include over;
            
             @include fl;
             width: 285px;
+            height: 450px;
             margin: 0 0 20px 20px;
+            
 
             .cover {
                 @include rel;
                 @include bs;
-                min-height: 150px;
+                @include over;
+                background-size: cover;
+                height: 395px;
                 img {
                     width: 100%;
                 }
@@ -114,7 +120,6 @@
                     height: 150px;
                     background: red;
                     @include gblg;
-    
                 }
                 .title , .follow {
                     @include abs;
@@ -128,10 +133,14 @@
                 }
                
             }
+            .board-size {
+                @include fr;
+                @include button;
+                margin-top: 10px;
+            }
         }
         .hb-list-board:nth-child(3) {
             font-weight: normal;
         }
     }
 }
-

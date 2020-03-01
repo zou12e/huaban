@@ -1,18 +1,19 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, {Component} from 'react';
+import './list.scss';
 
 class App extends Component {
   render() {
+    const {info, data} = this.props.history.location.state;
     return (
-      <div>
-        <h1>LIST</h1>
-        <Link to="/home">
-          <div>
-            回到home
+      <div className="hb-list content" >
+        <div className="hb-list-top" >
+          <div className="category-info bor-b" >
+            <span className="name">{data.name}</span>
+            <span className="category bor-l">
+              所属分类：
+              <span>{data.category}</span>
+            </span>
           </div>
-        </Link>
-        <div onClick={this.handleBrowserChange} >
-          回到home2
         </div>
       </div>
     );
@@ -20,10 +21,6 @@ class App extends Component {
   handleBrowserChange = () => {
     const {history} = this.props;
     history.push('/home');
-  }
-  componentDidMount() {
-    console.log(this.props.history.location.state);
-    console.log(this.props.match.params);
   }
 }
 

@@ -1,7 +1,4 @@
-/* eslint-disable react/no-unused-state */
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import head from '~/assets/head.jpeg';
 import axios from 'axios';
 
 import './home.scss';
@@ -15,7 +12,12 @@ class App extends Component {
   render() {
     const {tabsActice, list, info} = this.state;
     const boardSize = list.length;
-    const boardOriginalSize = list.filter(item => item.original === 1).length;
+    let allSize = 0;
+    const boardOriginalSize = list.filter(item => {
+      allSize += item.list.length;
+      return item.original === 1;
+    }).length;
+
     return (
       <div className="hb-main content" >
         <div className="hb-top-box" >
@@ -53,7 +55,7 @@ class App extends Component {
           </div>
           <div className="hb-info-tabs bor-t">
             <span onClick={() => { this.changeTabsActice(1); }} className={tabsActice === 1 ? 'actice' : ''} >{boardSize} 画板</span>
-            <span onClick={() => { this.changeTabsActice(2); }} className={tabsActice === 2 ? 'actice' : ''}>{boardOriginalSize} 采集</span>
+            <span onClick={() => { this.changeTabsActice(2); }} className={tabsActice === 2 ? 'actice' : ''}>{allSize} 采集</span>
             <span onClick={() => { this.changeTabsActice(3); }} className={tabsActice === 3 ? 'actice' : ''}>{boardOriginalSize} 原创画板</span>
           </div>
         </div>
@@ -100,16 +102,27 @@ class App extends Component {
   }
   getBoardList() {
     return this.state.list.map(item => (
-      <div key={item.id} className="hb-list-board" >
-        <div className="cover" >
-          <img src={item.cover} />
+      <div key={item.id} className="hb-list-board " onClick={this.goToList.bind(this, item)} >
+        <div className="cover" style={{backgroundImage: `url(${item.cover})`}} >
           <div className="over" >
             <div className="title" >{item.name}</div>
             <div className="follow" >{item.follows} 关注</div>
           </div>
         </div>
+        <div className="board-size" >
+          {item.list.length} 采集
+        </div>
       </div>
     ));
+  }
+  goToList(item) {
+    this.props.history.push({
+      pathname: `/list/${item.id}`,
+      state: {
+        info: this.state.info,
+        data: item
+      }
+    });
   }
   getMenuItems() {
     return this.state.list.map(item => (
