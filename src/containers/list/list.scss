@@ -1,0 +1,31 @@
+
+@import '../../style/scss.scss';
+
+.hb-list {
+     margin-top: 20px;
+
+     .hb-list-top {
+        background: $white;
+
+        .category-info {
+            line-height: 50px;
+            .name {
+                @include f(20);
+                color: $black;
+                font-weight: 700;
+                padding: 0 20px;
+            }
+            .category {
+                @include f(14);
+                padding: 0 20px;
+                border-color: $border-hover-color;
+
+                span {
+                    color: $brown;
+                }
+            }
+
+        }
+
+     }
+}
