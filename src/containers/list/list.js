@@ -15,6 +15,20 @@ class App extends Component {
             </span>
           </div>
         </div>
+        <div className="hb-list-bar" >
+          <div className="head-info" >
+            <img className="head" src={info.head} />
+            <span className="name">{info.name}</span>
+          </div>
+          <div className="about-info" >
+            <div className="size bor-l bor-r" >
+              {data.list.length}采集
+            </div>
+            <div className="follows" >
+              被{data.follows}人关注
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

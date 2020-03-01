@@ -24,8 +24,42 @@
                     color: $brown;
                 }
             }
-
         }
+     }
+     .hb-list-bar {
+         background: $white-deep;
+         @include bs;
+         @include f(14);
 
+         height: 50px;
+         @include flex-center;
+         justify-content: space-between;
+
+         .head-info {
+             margin-left: 20px;
+             height: 30px;
+             background: $white;
+             @include flex-center;
+             img {
+                 height: 30px;
+                 width: 30px;
+             }
+             .name {
+                 color: $black;
+                 padding: 0 8px;
+             }
+         }
+         .about-info {
+            @include flex-center;
+            .follows, .size {
+                height: 50px;
+                @include flex-center;
+                padding: 0 20px;
+            }
+            .size {
+                color: $black;
+                background: $white;
+            }
+        }
      }
 }

@@ -88,6 +88,14 @@
     }
 }
 
+// flex
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
 ///////////////////////////////////////////////
 // 循环初始字体大小:                         //  
 //  @end   : 结束字体大小(数字),必须输;      //
@@ -147,6 +155,8 @@
 @mixin rel{ position: relative; }
 @mixin cur{ cursor: pointer; }
 @mixin def{ cursor:default;}
+
+
 
 //css3过渡;
 @mixin tran($name:all,$time:2s){
