@@ -30,6 +30,13 @@ $disabled:#ccc;
 //引入底层库;
 @import './base.scss';
 
+// view
+@import './../containers/home/home.scss';
+@import './../containers/list/list.scss';
+
+// components
+@import './../components/board-list/board-list.scss';
+@import './../components/list/list.scss';
 
 //默认初始化;
 @include base($content:$main-width);

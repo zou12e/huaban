@@ -1,15 +1,21 @@
 import React, {Component} from 'react';
-import './list.scss';
+// import './list.scss';
 
 class List extends Component {
   state = {
     show: false,
     current: '',
-    index: 0
+    index: 0,
+    top: '0px'
   }
   render() {
     const {className, list} = this.props;
-    const {show, current, index} = this.state;
+    const {
+      show,
+      current,
+      index,
+      top
+    } = this.state;
     return (
       <div className="hb-detail" >
         <div className={`hb-detail-list-box ${className}`}>
@@ -26,8 +32,17 @@ class List extends Component {
           >
             上一个
           </div>
-          <div className="img-box" >
-            <img src={current} />
+          <div
+            className="img-box"
+            style={{top}}
+          >
+            <img
+              ref="img"
+              src={current}
+              onLoad={ev => {
+                this.setBoxTop(ev.currentTarget.height);
+              }}
+            />
           </div>
           <div
             className={`next ${index === list.length - 1 ? 'unseen' : ''}`}
@@ -71,6 +86,18 @@ class List extends Component {
     const htmlStyle = document.body.parentNode.style;
     htmlStyle.overflowY = res;
     htmlStyle.marginRight = res === 'hidden' ? '15px' : '0px';
+  }
+  setBoxTop(height) {
+    let top = '0px';
+    if (this.getClientHeight() > height) {
+      top = `${(this.getClientHeight() - height) / 2}px`;
+    }
+    this.setState({
+      top
+    });
+  }
+  getClientHeight() {
+    return window.innerHeight;
   }
   getList() {
     const {list} = this.props;

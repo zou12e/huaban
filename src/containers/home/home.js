@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import List from '~/components/list/list';
 import BoardList from '~/components/board-list/board-list';
-import './home.scss';
+// import './home.scss';
 
 
 class App extends Component {
