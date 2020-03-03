@@ -59,12 +59,32 @@ class App extends Component {
             {/* {this.getMenuItems()} */}
           </div>
           <div className="hb-info-tabs bor-t">
-            <span onClick={() => { this.changeTabsActice(1); }} className={tabsActice === 1 ? 'actice' : ''} >{boardSize} 画板</span>
-            <span onClick={() => { this.changeTabsActice(2); }} className={tabsActice === 2 ? 'actice' : ''}>{allSize} 采集</span>
-            <span onClick={() => { this.changeTabsActice(3); }} className={tabsActice === 3 ? 'actice' : ''}>{boardOriginalSize} 原创画板</span>
+            <span
+              onClick={() => { this.changeTabsActice(1); }}
+              className={tabsActice === 1 ? 'actice' : ''}
+            >
+              {boardSize} 画板
+            </span>
+            <span
+              onClick={() => { this.changeTabsActice(2); }}
+              className={tabsActice === 2 ? 'actice' : ''}
+            >
+              {allSize} 采集
+            </span>
+            <span
+              onClick={() => { this.changeTabsActice(3); }}
+              className={tabsActice === 3 ? 'actice' : ''}
+            >
+              {boardOriginalSize} 原创画板
+            </span>
           </div>
         </div>
-        <BoardList info={info} history={this.props.history} list={board} className={tabsActice === 1 || tabsActice === 3 ? '' : 'hide'} />
+        <BoardList
+          info={info}
+          history={this.props.history}
+          list={board}
+          className={tabsActice === 1 || tabsActice === 3 ? '' : 'hide'}
+        />
         <List list={this.getAllList()} className={tabsActice === 2 ? '' : 'hide'} />
       </div>
     );

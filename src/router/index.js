@@ -23,6 +23,10 @@ const Root = () => (
         <Router path="/list" component={List} />
         <Router path="/" component={Home} />
       </Switch>
+      <footer className="hb-footer center">
+        © 2019-2020 7wood.cn 版权所有 备案号：
+        <a href="http://www.beian.miit.gov.cn" target="_blank">粤ICP备15007178号-4</a>
+      </footer>
     </div>
   </BrowserRouter>
 );

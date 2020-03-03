@@ -36,6 +36,21 @@ $disabled:#ccc;
 body {
     background: $body-bg-color;
 }
+.hb-footer {
+    padding: 20px 0;
+}
+
+.hb-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: scroll;
+    background: rgba($color: #000, $alpha: .4);
+    @include flex-center;
+}
+
 /*方法*/
 .f12{
     @include f(12);
@@ -55,6 +70,8 @@ body {
 .rotate60{
     @include css3(transform,rotate(60deg));
 }
+
+
 
 /*旋转keyframes*/
 @include keyframes(rotates) {

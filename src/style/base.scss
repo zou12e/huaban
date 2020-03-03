@@ -95,11 +95,6 @@
     justify-content: center;
 }
 
-@mixin flex-center {
-    display: flex;
-    align-items: center;
-}
-
 ///////////////////////////////////////////////
 // 循环初始字体大小:                         //  
 //  @end   : 结束字体大小(数字),必须输;      //
@@ -153,7 +148,8 @@
 @mixin text-align( $dir:left ){text-align: $dir;}
 @mixin over{overflow:hidden; }
 @mixin ofv{overflow:visible !important;}
-@mixin hide{ display:none;  }
+@mixin hide{ display:none !important;  }
+@mixin unseen{ opacity: 0;}
 @mixin block{ display:block; }
 @mixin abs{ position: absolute; }
 @mixin rel{ position: relative; }
@@ -337,6 +333,9 @@ $browser: null;
         @include clear;
     }
     /* 显示隐藏 */
+    .unseen {
+        @include unseen;
+    }
     .hide{ 
         @include hide;
     }

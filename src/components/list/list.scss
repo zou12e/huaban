@@ -7,10 +7,35 @@
     padding-bottom: 50px;
     .cover {
         @include cur;
+        @include bs;
+        @include over;
         break-inside: avoid;
         margin-bottom: 20px;
         img {
             width: 100%;
         }
     }
+ }
+
+ .hb-popup {
+     justify-content: space-between !important;
+     .img-box {
+        width: 500px;
+        padding: 10px;
+        background: $white;
+        img {
+            width: 100%;
+        }
+     }
+
+     .before, .next {
+        @include f(18);
+        color: $white;
+        padding: 5px 10px;
+        @include cur;
+        &:hover {
+            background: rgba($color: #000, $alpha: .5);
+        }
+    }
+    
  }
