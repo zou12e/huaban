@@ -11,13 +11,14 @@ class List extends Component {
     const {className, list} = this.props;
     const {show, current, index} = this.state;
     return (
-      <div>
+      <div className="hb-detail" >
         <div className={`hb-detail-list-box ${className}`}>
           {this.getList()}
         </div>
         <div
           className={`hb-popup ${show ? '' : 'hide'}`}
           onClick={this.closeImg.bind(this)}
+          style={{overflowY: this.hasScrollbar() ? 'scroll' : 'auto'}}
         >
           <div
             className={`before ${index === 0 ? 'unseen' : ''}`}
@@ -44,9 +45,13 @@ class List extends Component {
       current,
       index
     });
+    if (this.hasScrollbar()) {
+      this.scrollbar('hidden');
+    }
   }
   closeImg() {
     this.setState({show: false});
+    this.scrollbar('auto');
   }
   changeImg(res, e) {
     const index = this.state.index + res;
@@ -57,6 +62,15 @@ class List extends Component {
       });
       e.stopPropagation();
     }
+  }
+  hasScrollbar() {
+    const h = window.innerHeight || document.documentElement.clientHeight;
+    return document.body.scrollHeight > h;
+  }
+  scrollbar(res) {
+    const htmlStyle = document.body.parentNode.style;
+    htmlStyle.overflowY = res;
+    htmlStyle.marginRight = res === 'hidden' ? '15px' : '0px';
   }
   getList() {
     const {list} = this.props;

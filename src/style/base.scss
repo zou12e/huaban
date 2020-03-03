@@ -153,6 +153,7 @@
 @mixin block{ display:block; }
 @mixin abs{ position: absolute; }
 @mixin rel{ position: relative; }
+@mixin fixed{ position: fixed; }
 @mixin cur{ cursor: pointer; }
 @mixin def{ cursor:default;}
 

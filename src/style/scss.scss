@@ -30,11 +30,16 @@ $disabled:#ccc;
 //引入底层库;
 @import './base.scss';
 
+
 //默认初始化;
 @include base($content:$main-width);
 
 body {
     background: $body-bg-color;
+   
+}
+.router-content {
+    overflow: auto;
 }
 .hb-footer {
     padding: 20px 0;
@@ -46,9 +51,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    overflow: scroll;
     background: rgba($color: #000, $alpha: .4);
-    @include flex-center;
 }
 
 /*方法*/
