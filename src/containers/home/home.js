@@ -1,16 +1,21 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-
+import List from '~/components/list/list';
+import BoardList from '~/components/board-list/board-list';
 import './home.scss';
+
 
 class App extends Component {
   state = {
-    tabsActice: 2,
+    tabsActice: 1,
     list: [],
+    board: [],
     info: {}
   }
   render() {
-    const {tabsActice, list, info} = this.state;
+    const {
+      tabsActice, list, info, board
+    } = this.state;
     const boardSize = list.length;
     let allSize = 0;
     const boardOriginalSize = list.filter(item => {
@@ -59,25 +64,8 @@ class App extends Component {
             <span onClick={() => { this.changeTabsActice(3); }} className={tabsActice === 3 ? 'actice' : ''}>{boardOriginalSize} 原创画板</span>
           </div>
         </div>
-        <div className="bb-list-box" >
-          {this.getBoardList()}
-        </div>
-        {/* <h1>HOME</h1>
-        <Link to={`/list/${this.state.id}`}>
-          <div>
-            go to list
-          </div>
-        </Link>
-        <i className="iconfont icon-bussiness-man" />
-        <button
-          className="transitions"
-          onClick={() => this.props.history.push({
-            pathname: '/list',
-            state: {
-              id: 5
-            }
-          })}
-        >通过函数跳转</button> */}
+        <BoardList info={info} history={this.props.history} list={board} className={tabsActice === 1 || tabsActice === 3 ? '' : 'hide'} />
+        <List list={this.getAllList()} className={tabsActice === 2 ? '' : 'hide'} />
       </div>
     );
   }
@@ -85,12 +73,23 @@ class App extends Component {
     this.setState({
       tabsActice
     });
+    if (tabsActice === 1) {
+      this.setState({
+        board: this.state.list
+      });
+    }
+    if (tabsActice === 3) {
+      this.setState({
+        board: this.state.list.filter(item => item.original === 1)
+      });
+    }
   }
   componentDidMount() {
     axios.get('http://mock-api.com/NnXRADzy.mock/api/v1/board/list')
       .then((res) => {
         this.setState({
-          list: res.data
+          list: res.data,
+          board: res.data
         });
       });
     axios.get('http://mock-api.com/NnXRADzy.mock/api/v1/user/info')
@@ -100,36 +99,10 @@ class App extends Component {
         });
       });
   }
-  getBoardList() {
-    return this.state.list.map(item => (
-      <div key={item.id} className="hb-list-board " onClick={this.goToList.bind(this, item)} >
-        <div className="cover" style={{backgroundImage: `url(${item.cover})`}} >
-          <div className="over" >
-            <div className="title" >{item.name}</div>
-            <div className="follow" >{item.follows} 关注</div>
-          </div>
-        </div>
-        <div className="board-size" >
-          {item.list.length} 采集
-        </div>
-      </div>
-    ));
-  }
-  goToList(item) {
-    this.props.history.push({
-      pathname: `/list/${item.id}`,
-      state: {
-        info: this.state.info,
-        data: item
-      }
-    });
-  }
-  getMenuItems() {
-    return this.state.list.map(item => (
-      <div key={item.id}>
-        <i type={item.icon} />{item.title}
-      </div>
-    ));
+  getAllList() {
+    const list = [];
+    this.state.list.map(item => item.list.map(ite => { list.push(ite); }));
+    return list;
   }
 }
 export default App;

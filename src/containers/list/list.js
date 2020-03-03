@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import List from '~/components/list/list';
 import './list.scss';
 
 class App extends Component {
@@ -16,7 +17,7 @@ class App extends Component {
           </div>
         </div>
         <div className="hb-list-bar" >
-          <div className="head-info" >
+          <div className="head-info" onClick={this.handleBrowserChange} >
             <img className="head" src={info.head} />
             <span className="name">{info.name}</span>
           </div>
@@ -29,6 +30,7 @@ class App extends Component {
             </div>
           </div>
         </div>
+        <List list={data.list} />
       </div>
     );
   }

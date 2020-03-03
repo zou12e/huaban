@@ -95,6 +95,10 @@
     justify-content: center;
 }
 
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+}
 
 ///////////////////////////////////////////////
 // 循环初始字体大小:                         //  
@@ -417,5 +421,6 @@ $browser: null;
     .bor-dot{ border:1px dotted $border-color;}
     .border{ border:1px solid $border-color;}
     /* box */
+    .center {text-align: center;}
     .content{ width: $content+$unit; margin:0 auto; }
 }

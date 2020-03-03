@@ -40,6 +40,7 @@
              height: 30px;
              background: $white;
              @include flex-center;
+             @include cur;
              img {
                  height: 30px;
                  width: 30px;
@@ -62,4 +63,5 @@
             }
         }
      }
+     
 }
