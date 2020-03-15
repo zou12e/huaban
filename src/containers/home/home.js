@@ -13,6 +13,7 @@ class App extends Component {
     info: {}
   }
   render() {
+    console.log(this.props.login);
     const {
       tabsActice, list, info, board
     } = this.state;
