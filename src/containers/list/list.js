@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import List from '~/components/list/list';
-// import './list.scss';
 
 class App extends Component {
   render() {
@@ -23,7 +22,7 @@ class App extends Component {
           </div>
           <div className="about-info" >
             <div className="size bor-l bor-r" >
-              {data.list.length}采集
+              {data.list.length}作品
             </div>
             <div className="follows" >
               被{data.follows}人关注
@@ -33,6 +32,9 @@ class App extends Component {
         <List list={data.list} />
       </div>
     );
+  }
+  componentDidMount = () => {
+    window.scrollTo(0, 0);
   }
   handleBrowserChange = () => {
     const {history} = this.props;

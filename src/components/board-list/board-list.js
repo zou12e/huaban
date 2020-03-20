@@ -29,7 +29,7 @@ class BoardList extends Component {
           </div>
         </div>
         <div className="board-size" >
-          {item.list.length} 采集
+          {item.list.length} 作品
         </div>
       </div>
     ));

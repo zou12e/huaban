@@ -1,10 +1,19 @@
 
-const initialState = {
-  x: 1
-};
+const ADD = 'ADD';
+
+
+const initialState = {};
 const reducer = function (state = initialState, action) {
-  return state;
+  switch (action.type) {
+    case ADD: {
+      console.log('---', action);
+      return action.payload;
+    }
+    default:
+      return state;
+  }
 };
+
 
 export default reducer;
 

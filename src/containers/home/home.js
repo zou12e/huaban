@@ -13,7 +13,6 @@ class App extends Component {
     info: {}
   }
   render() {
-    console.log(this.props.login);
     const {
       tabsActice, list, info, board
     } = this.state;
@@ -70,7 +69,7 @@ class App extends Component {
               onClick={() => { this.changeTabsActice(2); }}
               className={tabsActice === 2 ? 'actice' : ''}
             >
-              {allSize} 采集
+              {allSize} 作品
             </span>
             <span
               onClick={() => { this.changeTabsActice(3); }}

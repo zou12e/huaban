@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import {hot} from 'react-hot-loader';
-import Store from '../redux';
+import store from '../redux';
 import Home from '../containers/home/home';
 import List from '../containers/list/list';
 
@@ -18,7 +18,7 @@ const Router = ({component: Component, children, ...rest}) => (
 
 const Root = () => (
   <BrowserRouter>
-    <Provider store={Store}>
+    <Provider store={store}>
       <div className="router-content">
         <Switch>
           <Router path="/home" component={Home} />
@@ -34,6 +34,22 @@ const Root = () => (
     </Provider>
   </BrowserRouter>
 );
+// console.log('initial state: ', store.getState());
+// const unsubscribe = store.subscribe(() =>
+//   console.log('store.getState())', store.getState()));
+
+// function addToCart(product) {
+//   return {
+//     type: 'ADD',
+//     payload: {product}
+//   };
+// }
+
+
+// store.dispatch(addToCart('a'));
+
+// unsubscribe();
+
 export default hot(module)(Root);
 
 

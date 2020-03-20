@@ -96,6 +96,9 @@ class List extends Component {
       top
     });
   }
+  toTop() {
+    document.body.scrollTop = 0;
+  }
   getClientHeight() {
     return window.innerHeight;
   }
